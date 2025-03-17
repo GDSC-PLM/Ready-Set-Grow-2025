@@ -2,29 +2,42 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { Image } from "next/image";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="bg-gray-900 text-white sticky top-0 z-50">
+    <header className="sticky bg-white top-0 z-50">
       <div className="container mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
         {/* Logo */}
-        <h1 className="text-2xl font-bold">MyWebsite</h1>
+        <img src="/images/icons/RSG-icon.svg" alt="" />
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-6">
-          <a href="#" className="hover:text-gray-400">
+        <nav className="hidden md:flex space-x-12 text-black">
+          <a
+            href="/"
+            className="hover:text-gray-400 transition-colors duration-300"
+          >
             Home
           </a>
-          <a href="#" className="hover:text-gray-400">
-            About
+          <a
+            href="#"
+            className="hover:text-gray-400 transition-colors duration-300"
+          >
+            Activities
           </a>
-          <a href="#" className="hover:text-gray-400">
-            Services
+          <a
+            href="#"
+            className="hover:text-gray-400 transition-colors duration-300"
+          >
+            About Us
           </a>
-          <a href="#" className="hover:text-gray-400">
-            Contact
+          <a
+            href="#"
+            className="hover:text-gray-400 transition-colors duration-300"
+          >
+            Be a sponsor
           </a>
         </nav>
 
@@ -39,18 +52,30 @@ const Header = () => {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <nav className="md:hidden bg-gray-800 text-center py-4">
-          <a href="#" className="block py-2 hover:text-gray-400">
+        <nav className="md:hidden text-center py-4 space-y-2">
+          <a
+            href="/"
+            className="block hover:text-gray-400 transition-colors duration-300"
+          >
             Home
           </a>
-          <a href="#" className="block py-2 hover:text-gray-400">
-            About
+          <a
+            href="#"
+            className="block hover:text-gray-400 transition-colors duration-300"
+          >
+            Activities
           </a>
-          <a href="#" className="block py-2 hover:text-gray-400">
-            Services
+          <a
+            href="#"
+            className="block hover:text-gray-400 transition-colors duration-300"
+          >
+            About Us
           </a>
-          <a href="#" className="block py-2 hover:text-gray-400">
-            Contact
+          <a
+            href="#"
+            className="block hover:text-gray-400 transition-colors duration-300"
+          >
+            Be a sponsor
           </a>
         </nav>
       )}
