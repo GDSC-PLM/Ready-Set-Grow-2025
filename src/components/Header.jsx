@@ -15,7 +15,7 @@ const Header = () => {
         <img src="/images/icons/RSG-icon.svg" alt="" />
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex space-x-12 text-black">
+        <nav className="hidden md:flex items-center space-x-12 text-black">
           <Link
             href="/"
             className="hover:text-gray-400 transition-colors duration-300"
@@ -37,6 +37,12 @@ const Header = () => {
           <Link
             href="#"
             className="hover:text-gray-400 transition-colors duration-300"
+          >
+            2024 Recap
+          </Link>
+          <Link
+            href="#"
+            className="text-lg hover:text-white transition-colors duration-300 border border-[#FDB528] rounded-2xl px-6 py-1 flex items-center hover:bg-[#FDB528]"
           >
             Be a sponsor
           </Link>
@@ -75,6 +81,12 @@ const Header = () => {
           <Link
             href="#"
             className="block hover:text-gray-400 transition-colors duration-300"
+          >
+            2024 Recap
+          </Link>
+          <Link
+            href="#"
+            className="text-lg block hover:text-white transition-colors duration-300 border border-[#FDB528] rounded-xl px-4 py-1 mx-auto w-fit hover:bg-[#FDB528]"
           >
             Be a sponsor
           </Link>
