@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Image } from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,30 +16,30 @@ const Header = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex space-x-12 text-black">
-          <a
+          <Link
             href="/"
             className="hover:text-gray-400 transition-colors duration-300"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/activities"
             className="hover:text-gray-400 transition-colors duration-300"
           >
             Activities
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/about"
             className="hover:text-gray-400 transition-colors duration-300"
           >
             About Us
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
             className="hover:text-gray-400 transition-colors duration-300"
           >
             Be a sponsor
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -53,30 +54,30 @@ const Header = () => {
       {/* Mobile Menu Dropdown */}
       {isOpen && (
         <nav className="md:hidden text-center py-4 space-y-2">
-          <a
+          <Link
             href="/"
             className="block hover:text-gray-400 transition-colors duration-300"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/activities"
             className="block hover:text-gray-400 transition-colors duration-300"
           >
             Activities
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/about"
             className="block hover:text-gray-400 transition-colors duration-300"
           >
             About Us
-          </a>
-          <a
+          </Link>
+          <Link
             href="#"
             className="block hover:text-gray-400 transition-colors duration-300"
           >
             Be a sponsor
-          </a>
+          </Link>
         </nav>
       )}
     </header>
