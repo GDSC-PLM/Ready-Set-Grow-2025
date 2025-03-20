@@ -43,15 +43,15 @@ export default function Activities() {
 
   return (
     <div className="bg-[#FDEFE6]">
-      <div className="container mx-auto px-4 md:px-4 py-12">
+      <div className="container mx-auto px-4 py-8 md:py-12">
         {/* Navigation Buttons */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8 md:mb-12">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`
-                px-16 py-1 rounded-full text-md font-semibold transition-all duration-300
+                px-8 sm:px-12 md:px-16 py-1.5 rounded-full text-sm md:text-md font-semibold transition-all duration-300
                 ${activeTab === tab.id 
                   ? `${tab.color} text-white` 
                   : 'bg-white text-black border-2 border-black hover:border-gray-300'
@@ -73,27 +73,28 @@ export default function Activities() {
             animate="center"
             exit="exit"
             transition={{
-              x: { type: "spring", stiffness: 400, damping: 40 }, // Increased stiffness and damping for faster animation
-              opacity: { duration: 0.15 } // Reduced opacity transition duration
+              x: { type: "spring", stiffness: 400, damping: 40 },
+              opacity: { duration: 0.15 }
             }}
             className="w-full"
           >
+            {/* READY Section */}
             {activeTab === "ready" && (
-              <div className="min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-5xl mx-auto">
+              <div className="min-h-[400px] md:min-h-[500px]">
+                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
                   {/* Left Side */}
-                  <div className="flex-1 space-y-8">
+                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
                     {/* Top - Heading */}
-                    <div>
+                    <div className="flex justify-center lg:justify-start">
                       <img 
                         src="/images/assets/READY-HEADING.svg" 
                         alt="Ready Heading" 
-                        className="w-full max-w-[320px]" 
+                        className="w-[280px] sm:w-[300px] md:w-full md:max-w-[320px]" 
                       />
                     </div>
                     
                     {/* Bottom - Description */}
-                    <div className="text-lg text-black max-w-[80%]"> 
+                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0"> 
                       <p>
                         READY in overcoming self-doubt and focusing on building confidence to develop innate skills for career growth.
                       </p>
@@ -101,79 +102,69 @@ export default function Activities() {
                   </div>
 
                   {/* Right Side - Floating Image */}
-                  <div className="flex-1 flex justify-center lg:justify-end">
+                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                     <img 
                       src="/images/assets/READY-FLOATING.svg" 
                       alt="Ready Floating Elements" 
-                      className="w-full max-w-[453px]"
+                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                     />
                   </div>
                 </div>
               </div>
             )}
 
+            {/* SET Section - Apply same pattern */}
             {activeTab === "set" && (
-              <div className="min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-5xl mx-auto">
-                  {/* Left Side */}
-                  <div className="flex-1 space-y-8">
-                    {/* Top - Heading */}
-                    <div>
+              <div className="min-h-[400px] md:min-h-[500px]">
+                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
+                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                    <div className="flex justify-center lg:justify-start">
                       <img 
                         src="/images/assets/SET-HEADING.svg" 
                         alt="Set Heading" 
-                        className="w-full max-w-[240px]"
+                        className="w-[200px] sm:w-[220px] md:w-full md:max-w-[240px]"
                       />
                     </div>
-                    
-                    {/* Bottom - Description */}
-                    <div className="text-lg text-black max-w-[80%]">
+                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0">
                       <p>
-                      SET the pace in preparing for career success by developing professional profiles, networking strategies, and excelling in interviews.
+                        SET the pace in preparing for career success by developing professional profiles, networking strategies, and excelling in interviews.
                       </p>
                     </div>
                   </div>
-
-                  {/* Right Side - Floating Image */}
-                  <div className="flex-1 flex justify-center lg:justify-end">
+                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                     <img 
                       src="/images/assets/SET-FLOATING.svg" 
                       alt="Set Floating Elements" 
-                      className="w-full max-w-[453px]"
+                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                     />
                   </div>
                 </div>
               </div>
             )}
 
+            {/* GROW Section - Apply same pattern */}
             {activeTab === "grow" && (
-              <div className="min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 max-w-5xl mx-auto">
-                  {/* Left Side */}
-                  <div className="flex-1 space-y-8">
-                    {/* Top - Heading */}
-                    <div>
+              <div className="min-h-[400px] md:min-h-[500px]">
+                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
+                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                    <div className="flex justify-center lg:justify-start">
                       <img 
                         src="/images/assets/GROW-HEADING.svg" 
                         alt="Grow Heading" 
-                        className="w-full max-w-[280px]"
+                        className="w-[240px] sm:w-[260px] md:w-full md:max-w-[280px]"
                       />
                     </div>
-                    
-                    {/* Bottom - Description */}
-                    <div className="text-lg text-gray-700 max-w-[82%]">
+                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[82%] mx-auto lg:mx-0">
                       <p>
                         Introducing students to career development, overcoming self-doubt, and understanding trends in the professional landscape.
                       </p>
                     </div>
                   </div>
-
-                  {/* Right Side - Floating Image */}
-                  <div className="flex-1 flex justify-center lg:justify-end">
+                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                     <img 
                       src="/images/assets/GROW-FLOATING.svg" 
                       alt="Grow Floating Elements" 
-                      className="w-full max-w-[453px]"
+                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                     />
                   </div>
                 </div>
@@ -182,8 +173,8 @@ export default function Activities() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Optional: Navigation arrows */}
-        <div className="flex justify-between mt-8">
+        {/* Navigation arrows */}
+        <div className="flex justify-between mt-6 md:mt-8">
           <button
             onClick={() => paginate(-1)}
             className="p-2 disabled:opacity-50"
