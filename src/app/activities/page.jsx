@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { readyActivities, setActivities, growActivities } from "../../data/activities-data";
+import ActivityCard from "../../components/ActivityCard";
 
 export default function Activities() {
   const [activeTab, setActiveTab] = useState("ready");
@@ -80,95 +82,139 @@ export default function Activities() {
           >
             {/* READY Section */}
             {activeTab === "ready" && (
-              <div className="min-h-[400px] md:min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
-                  {/* Left Side */}
-                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
-                    {/* Top - Heading */}
-                    <div className="flex justify-center lg:justify-start">
+              <>
+                <div className="min-h-[400px] md:min-h-[500px]">
+                  <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
+                    {/* Left Side */}
+                    <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                      <div className="flex justify-center lg:justify-start">
+                        <img 
+                          src="/images/assets/READY-HEADING.svg" 
+                          alt="Ready Heading" 
+                          className="w-[280px] sm:w-[300px] md:w-full md:max-w-[320px]" 
+                        />
+                      </div>
+                      <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0"> 
+                        <p>
+                          READY in overcoming self-doubt and focusing on building confidence to develop innate skills for career growth.
+                        </p>
+                      </div>
+                    </div>
+                    {/* Right Side - Floating Image */}
+                    <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                       <img 
-                        src="/images/assets/READY-HEADING.svg" 
-                        alt="Ready Heading" 
-                        className="w-[280px] sm:w-[300px] md:w-full md:max-w-[320px]" 
+                        src="/images/assets/READY-FLOATING.svg" 
+                        alt="Ready Floating Elements" 
+                        className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
-                    
-                    {/* Bottom - Description */}
-                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0"> 
-                      <p>
-                        READY in overcoming self-doubt and focusing on building confidence to develop innate skills for career growth.
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right Side - Floating Image */}
-                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    <img 
-                      src="/images/assets/READY-FLOATING.svg" 
-                      alt="Ready Floating Elements" 
-                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
-                    />
                   </div>
                 </div>
-              </div>
+                {/* Activities Grid */}
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                    {readyActivities.map((activity) => (
+                      <ActivityCard
+                        key={activity.id}
+                        image={activity.image}
+                        title={activity.title}
+                        description={activity.description}
+                        titleColor="text-[#E9452A]"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
 
-            {/* SET Section - Apply same pattern */}
+            {/* SET Section */}
             {activeTab === "set" && (
-              <div className="min-h-[400px] md:min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
-                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
-                    <div className="flex justify-center lg:justify-start">
+              <>
+                <div className="min-h-[400px] md:min-h-[500px]">
+                  <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
+                    <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                      <div className="flex justify-center lg:justify-start">
+                        <img 
+                          src="/images/assets/SET-HEADING.svg" 
+                          alt="Set Heading" 
+                          className="w-[200px] sm:w-[220px] md:w-full md:max-w-[240px]"
+                        />
+                      </div>
+                      <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0">
+                        <p>
+                          SET the pace in preparing for career success by developing professional profiles, networking strategies, and excelling in interviews.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                       <img 
-                        src="/images/assets/SET-HEADING.svg" 
-                        alt="Set Heading" 
-                        className="w-[200px] sm:w-[220px] md:w-full md:max-w-[240px]"
+                        src="/images/assets/SET-FLOATING.svg" 
+                        alt="Set Floating Elements" 
+                        className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
-                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0">
-                      <p>
-                        SET the pace in preparing for career success by developing professional profiles, networking strategies, and excelling in interviews.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    <img 
-                      src="/images/assets/SET-FLOATING.svg" 
-                      alt="Set Floating Elements" 
-                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
-                    />
                   </div>
                 </div>
-              </div>
+                {/* Activities Grid */}
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                    {setActivities.map((activity) => (
+                      <ActivityCard
+                        key={activity.id}
+                        image={activity.image}
+                        title={activity.title}
+                        description={activity.description}
+                        titleColor="text-[#FFA726]"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
 
-            {/* GROW Section - Apply same pattern */}
+            {/* GROW Section */}
             {activeTab === "grow" && (
-              <div className="min-h-[400px] md:min-h-[500px]">
-                <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
-                  <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
-                    <div className="flex justify-center lg:justify-start">
+              <>
+                <div className="min-h-[400px] md:min-h-[500px]">
+                  <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
+                    <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                      <div className="flex justify-center lg:justify-start">
+                        <img 
+                          src="/images/assets/GROW-HEADING.svg" 
+                          alt="Grow Heading" 
+                          className="w-[240px] sm:w-[260px] md:w-full md:max-w-[280px]"
+                        />
+                      </div>
+                      <div className="text-base md:text-lg text-black w-[90%] md:max-w-[82%] mx-auto lg:mx-0">
+                        <p>
+                          Introducing students to career development, overcoming self-doubt, and understanding trends in the professional landscape.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
                       <img 
-                        src="/images/assets/GROW-HEADING.svg" 
-                        alt="Grow Heading" 
-                        className="w-[240px] sm:w-[260px] md:w-full md:max-w-[280px]"
+                        src="/images/assets/GROW-FLOATING.svg" 
+                        alt="Grow Floating Elements" 
+                        className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
-                    <div className="text-base md:text-lg text-black w-[90%] md:max-w-[82%] mx-auto lg:mx-0">
-                      <p>
-                        Introducing students to career development, overcoming self-doubt, and understanding trends in the professional landscape.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                    <img 
-                      src="/images/assets/GROW-FLOATING.svg" 
-                      alt="Grow Floating Elements" 
-                      className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
-                    />
                   </div>
                 </div>
-              </div>
+                {/* Activities Grid */}
+                <div className="max-w-5xl mx-auto">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                    {growActivities.map((activity) => (
+                      <ActivityCard
+                        key={activity.id}
+                        image={activity.image}
+                        title={activity.title}
+                        description={activity.description}
+                        titleColor="text-[#1E7A44]"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </>
             )}
           </motion.div>
         </AnimatePresence>
