@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { readyActivities, setActivities, growActivities } from "../../data/activities-data";
 import ActivityCard from "../../components/ActivityCard";
+import Modal from "../../components/Modal";
 
 export default function Activities() {
   const [activeTab, setActiveTab] = useState("ready");
+  const [selectedActivity, setSelectedActivity] = useState(null);
 
   const tabs = [
     { id: "ready", label: "Ready", color: "bg-[#EA4335]" },
@@ -43,9 +45,13 @@ export default function Activities() {
     }
   };
 
+  const handleActivityClick = (activity) => {
+    setSelectedActivity(activity);
+  };
+
   return (
     <div className="bg-[#FDEFE6]">
-      <div className="container mx-auto px-4 py-8 md:py-12">
+      <div className="container mx-auto px-4 py-16 md:py-24">
         {/* Navigation Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8 md:mb-12">
           {tabs.map((tab) => (
@@ -120,6 +126,7 @@ export default function Activities() {
                         title={activity.title}
                         description={activity.description}
                         titleColor="text-[#E9452A]"
+                        onClick={() => handleActivityClick(activity)}
                       />
                     ))}
                   </div>
@@ -236,6 +243,56 @@ export default function Activities() {
             Next →
           </button>
         </div>
+
+        {/* Modal */}
+        <Modal
+          isOpen={!!selectedActivity}
+          onClose={() => setSelectedActivity(null)}
+        >
+          {selectedActivity && (
+            <div className="space-y-6">
+              <img 
+                src={selectedActivity.image} 
+                alt={selectedActivity.title}
+                className="w-full h-[300px] object-cover rounded-xl"
+              />
+              <h2 className="text-2xl font-bold">{selectedActivity.title}</h2>
+              <p className="text-gray-700">{selectedActivity.description}</p>
+              
+              {/* Additional Details - Only show if details exist */}
+              {selectedActivity.details && (
+                <div className="space-y-4 border-t pt-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <h3 className="font-semibold">Date</h3>
+                      <p>{selectedActivity.details.date}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold">Time</h3>
+                      <p>{selectedActivity.details.time}</p>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h3 className="font-semibold">Venue</h3>
+                    <p>{selectedActivity.details.venue}</p>
+                  </div>
+
+                  {selectedActivity.details.keyPoints && (
+                    <div>
+                      <h3 className="font-semibold">Key Points Covered</h3>
+                      <ul className="list-disc list-inside mt-2">
+                        {selectedActivity.details.keyPoints.map((point, index) => (
+                          <li key={index}>{point}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </Modal>
       </div>
     </div>
   );
