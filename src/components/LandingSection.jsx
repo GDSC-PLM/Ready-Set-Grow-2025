@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function LandingSection() {
   return (
-    <section className="px-[20px] sm:px-[80px] md:px-[100px] xl:px-[150px] py-[100px] mb-4 flex w-full justify-center lg:justify-between items-center">
+    <section className="px-[20px] sm:px-[80px] md:px-[100px] xl:px-[150px] py-[100px] flex w-full justify-center lg:justify-between items-center relative">
       <div>
         <h4 className="text-[#848484] mb-4 text-lg">
           Google Developer Groups on Campus - PLM presents
@@ -30,6 +30,17 @@ export default function LandingSection() {
         <Image
           src="/images/assets/RSG-Landing-Design.svg"
           alt="Landing page design"
+          className="h-full w-auto"
+          width={500}
+          style={{ objectFit: "contain" }}
+          height={400}
+        />
+      </div>
+
+      <div className="absolute bottom-0 left-0 sm:bottom-10 transform translate-y-[70%] z-1">
+        <Image
+          src="/images/designs/design-rectangle-1.svg"
+          alt="Design asset"
           className="h-full w-auto"
           width={500}
           style={{ objectFit: "contain" }}

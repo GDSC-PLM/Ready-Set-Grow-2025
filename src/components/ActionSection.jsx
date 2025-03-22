@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ActionSection() {
   return (
-    <section className="px-[20px] sm:px-[80px] md:px-[100px] xl:px-[150px] py-[150px] bg-[#FDEFE6] flex space-x-4 justify-around items-center">
+    <section className="px-[20px] sm:px-[80px] md:px-[100px] xl:px-[150px] py-[150px] bg-[#FDEFE6] flex space-x-4 justify-around items-center relative">
       <div className="max-w-3xl">
         <h4
           className="text-[#30AC66] text-5xl font-black mb-10"
@@ -34,6 +34,27 @@ export default function ActionSection() {
           width={650}
           style={{ objectFit: "contain", minWidth: "400px" }}
           height={500}
+        />
+      </div>
+
+      <div className="absolute bottom-0 left-0 transform translate-y-[70%]">
+        <Image
+          src="/images/designs/design-line-2.svg"
+          alt="Design asset"
+          className="h-full w-auto"
+          width={500}
+          style={{ objectFit: "contain" }}
+          height={400}
+        />
+      </div>
+      <div className="absolute bottom-0 right-0 transform translate-y-[30%] hidden sm:block sm:w-[270px]">
+        <Image
+          src="/images/designs/design-star-1.svg"
+          alt="Design asset"
+          className="h-full w-auto"
+          width={500}
+          style={{ objectFit: "contain" }}
+          height={400}
         />
       </div>
     </section>
