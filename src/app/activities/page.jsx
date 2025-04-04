@@ -1,44 +1,52 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { readyActivities, setActivities, growActivities } from "../../data/activities-data";
+import { useEffect, useState } from "react";
+import {
+  readyActivities,
+  setActivities,
+  growActivities,
+} from "../../data/activities-data";
 import ActivityCard from "../../components/ActivityCard";
 import Modal from "../../components/Modal";
+import { useSearchParams } from "next/navigation";
 
 export default function Activities() {
+  const searchParams = useSearchParams();
+  const initialTab = searchParams.get("initialTab");
+
   const [activeTab, setActiveTab] = useState("ready");
   const [selectedActivity, setSelectedActivity] = useState(null);
 
   const tabs = [
     { id: "ready", label: "Ready", color: "bg-[#EA4335]" },
     { id: "set", label: "Set", color: "bg-[#FDB528]" },
-    { id: "grow", label: "Grow", color: "bg-[#34A853]" }
+    { id: "grow", label: "Grow", color: "bg-[#34A853]" },
   ];
 
   const variants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       zIndex: 1,
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   const [[page, direction], setPage] = useState([0, 0]);
 
   const paginate = (newDirection) => {
-    const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
+    const currentIndex = tabs.findIndex((tab) => tab.id === activeTab);
     const nextIndex = currentIndex + newDirection;
-    
+
     if (nextIndex >= 0 && nextIndex < tabs.length) {
       setPage([page + newDirection, newDirection]);
       setActiveTab(tabs[nextIndex].id);
@@ -48,6 +56,12 @@ export default function Activities() {
   const handleActivityClick = (activity) => {
     setSelectedActivity(activity);
   };
+
+  useEffect(() => {
+    if (initialTab) {
+      setActiveTab(initialTab);
+    }
+  }, [initialTab]);
 
   return (
     <div className="bg-[#FDEFE6]">
@@ -60,9 +74,10 @@ export default function Activities() {
               onClick={() => setActiveTab(tab.id)}
               className={`
                 px-8 sm:px-12 md:px-16 py-1.5 rounded-full text-sm md:text-md font-semibold transition-all duration-300
-                ${activeTab === tab.id 
-                  ? `${tab.color} text-white` 
-                  : 'bg-white text-black border-2 border-black hover:border-gray-300'
+                ${
+                  activeTab === tab.id
+                    ? `${tab.color} text-white`
+                    : "bg-white text-black border-2 border-black hover:border-gray-300"
                 }
               `}
             >
@@ -82,7 +97,7 @@ export default function Activities() {
             exit="exit"
             transition={{
               x: { type: "spring", stiffness: 400, damping: 40 },
-              opacity: { duration: 0.15 }
+              opacity: { duration: 0.15 },
             }}
             className="w-full"
           >
@@ -94,23 +109,25 @@ export default function Activities() {
                     {/* Left Side */}
                     <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
                       <div className="flex justify-center lg:justify-start">
-                        <img 
-                          src="/images/assets/READY-HEADING.svg" 
-                          alt="Ready Heading" 
-                          className="w-[280px] sm:w-[300px] md:w-full md:max-w-[320px]" 
+                        <img
+                          src="/images/assets/READY-HEADING.svg"
+                          alt="Ready Heading"
+                          className="w-[280px] sm:w-[300px] md:w-full md:max-w-[320px]"
                         />
                       </div>
-                      <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0"> 
+                      <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0">
                         <p>
-                          READY in overcoming self-doubt and focusing on building confidence to develop innate skills for career growth.
+                          READY in overcoming self-doubt and focusing on
+                          building confidence to develop innate skills for
+                          career growth.
                         </p>
                       </div>
                     </div>
                     {/* Right Side - Floating Image */}
                     <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                      <img 
-                        src="/images/assets/READY-FLOATING.svg" 
-                        alt="Ready Floating Elements" 
+                      <img
+                        src="/images/assets/READY-FLOATING.svg"
+                        alt="Ready Floating Elements"
                         className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
@@ -141,22 +158,24 @@ export default function Activities() {
                   <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
                     <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
                       <div className="flex justify-center lg:justify-start">
-                        <img 
-                          src="/images/assets/SET-HEADING.svg" 
-                          alt="Set Heading" 
+                        <img
+                          src="/images/assets/SET-HEADING.svg"
+                          alt="Set Heading"
                           className="w-[200px] sm:w-[220px] md:w-full md:max-w-[240px]"
                         />
                       </div>
                       <div className="text-base md:text-lg text-black w-[90%] md:max-w-[80%] mx-auto lg:mx-0">
                         <p>
-                          SET the pace in preparing for career success by developing professional profiles, networking strategies, and excelling in interviews.
+                          SET the pace in preparing for career success by
+                          developing professional profiles, networking
+                          strategies, and excelling in interviews.
                         </p>
                       </div>
                     </div>
                     <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                      <img 
-                        src="/images/assets/SET-FLOATING.svg" 
-                        alt="Set Floating Elements" 
+                      <img
+                        src="/images/assets/SET-FLOATING.svg"
+                        alt="Set Floating Elements"
                         className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
@@ -186,22 +205,24 @@ export default function Activities() {
                   <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-16 max-w-5xl mx-auto">
                     <div className="flex-1 space-y-6 md:space-y-8 text-center lg:text-left">
                       <div className="flex justify-center lg:justify-start">
-                        <img 
-                          src="/images/assets/GROW-HEADING.svg" 
-                          alt="Grow Heading" 
+                        <img
+                          src="/images/assets/GROW-HEADING.svg"
+                          alt="Grow Heading"
                           className="w-[240px] sm:w-[260px] md:w-full md:max-w-[280px]"
                         />
                       </div>
                       <div className="text-base md:text-lg text-black w-[90%] md:max-w-[82%] mx-auto lg:mx-0">
                         <p>
-                          Introducing students to career development, overcoming self-doubt, and understanding trends in the professional landscape.
+                          Introducing students to career development, overcoming
+                          self-doubt, and understanding trends in the
+                          professional landscape.
                         </p>
                       </div>
                     </div>
                     <div className="flex-1 flex justify-center lg:justify-end mt-8 lg:mt-0">
-                      <img 
-                        src="/images/assets/GROW-FLOATING.svg" 
-                        alt="Grow Floating Elements" 
+                      <img
+                        src="/images/assets/GROW-FLOATING.svg"
+                        alt="Grow Floating Elements"
                         className="w-[300px] sm:w-[350px] md:w-full md:max-w-[453px]"
                       />
                     </div>
@@ -231,14 +252,16 @@ export default function Activities() {
           <button
             onClick={() => paginate(-1)}
             className="p-2 disabled:opacity-50"
-            disabled={tabs.findIndex(tab => tab.id === activeTab) === 0}
+            disabled={tabs.findIndex((tab) => tab.id === activeTab) === 0}
           >
             ← Previous
           </button>
           <button
             onClick={() => paginate(1)}
             className="p-2 disabled:opacity-50"
-            disabled={tabs.findIndex(tab => tab.id === activeTab) === tabs.length - 1}
+            disabled={
+              tabs.findIndex((tab) => tab.id === activeTab) === tabs.length - 1
+            }
           >
             Next →
           </button>
@@ -251,14 +274,14 @@ export default function Activities() {
         >
           {selectedActivity && (
             <div className="space-y-6">
-              <img 
-                src={selectedActivity.image} 
+              <img
+                src={selectedActivity.image}
                 alt={selectedActivity.title}
                 className="w-full h-[300px] object-cover rounded-xl"
               />
               <h2 className="text-2xl font-bold">{selectedActivity.title}</h2>
               <p className="text-gray-700">{selectedActivity.description}</p>
-              
+
               {/* Additional Details - Only show if details exist */}
               {selectedActivity.details && (
                 <div className="space-y-4 border-t pt-4">
@@ -272,7 +295,7 @@ export default function Activities() {
                       <p>{selectedActivity.details.time}</p>
                     </div>
                   </div>
-                  
+
                   <div>
                     <h3 className="font-semibold">Venue</h3>
                     <p>{selectedActivity.details.venue}</p>
@@ -282,9 +305,11 @@ export default function Activities() {
                     <div>
                       <h3 className="font-semibold">Key Points Covered</h3>
                       <ul className="list-disc list-inside mt-2">
-                        {selectedActivity.details.keyPoints.map((point, index) => (
-                          <li key={index}>{point}</li>
-                        ))}
+                        {selectedActivity.details.keyPoints.map(
+                          (point, index) => (
+                            <li key={index}>{point}</li>
+                          )
+                        )}
                       </ul>
                     </div>
                   )}
